@@ -4,11 +4,13 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"log"
 	"net/http"
 	"time"
 )
@@ -52,7 +54,6 @@ func GetProjectEndpoint(response http.ResponseWriter, request *http.Request) {
 // GetProjectsEndpoint ...
 func GetProjectsEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")
-	response.Header().Set("Access-Control-Allow-Origin", "*")
 	var projects []Project
 	collection := client.Database("go-rest").Collection("projects")
 	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
@@ -85,5 +86,6 @@ func main() {
 	router.HandleFunc("/project", CreateProjectEndpoint).Methods("POST")
 	router.HandleFunc("/projects", GetProjectsEndpoint).Methods("GET")
 	router.HandleFunc("/project/{id}", GetProjectEndpoint).Methods("GET")
-	http.ListenAndServe(":8080", router)
+	log.Fatal(http.ListenAndServe(":8080", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(router)))
+
 }
