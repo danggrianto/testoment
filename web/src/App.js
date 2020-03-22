@@ -1,14 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Header from './components/header';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Testing Hello word</p>
-      </header>
+      <Header />
     </div>
   );
 }
