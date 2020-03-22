@@ -17,4 +17,11 @@ describe('Header', () => {
   it('should render Brand text', () => {
     expect(wrapper.find('NavbarBrand').text()).toEqual('Testoment');
   });
+
+  it('should render Button', function() {
+    expect(wrapper.find('Button').length).toEqual(1);
+  });
+  it('should render Add Project Button', () => {
+    expect(wrapper.find('Button').text()).toEqual('Add Project');
+  });
 });
