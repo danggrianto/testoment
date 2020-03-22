@@ -52,6 +52,7 @@ func GetProjectEndpoint(response http.ResponseWriter, request *http.Request) {
 // GetProjectsEndpoint ...
 func GetProjectsEndpoint(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("content-type", "application/json")
+	response.Header().Set("Access-Control-Allow-Origin", "*")
 	var projects []Project
 	collection := client.Database("go-rest").Collection("projects")
 	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
