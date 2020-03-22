@@ -18,10 +18,15 @@ describe('Header', () => {
     expect(wrapper.find('NavbarBrand').text()).toEqual('Testoment');
   });
 
-  it('should render Button', function() {
-    expect(wrapper.find('Button').length).toEqual(1);
+  it('should render Home Link', function() {
+    const home = wrapper.find('NavLink').at(0);
+    expect(home.text()).toEqual('Home');
+    expect(home.prop('href')).toEqual('/');
   });
-  it('should render Add Project Button', () => {
-    expect(wrapper.find('Button').text()).toEqual('Add Project');
+
+  it('should render Projects Link', function() {
+    const home = wrapper.find('NavLink').at(1);
+    expect(home.text()).toEqual('Projects');
+    expect(home.prop('href')).toEqual('/projects');
   });
 });
