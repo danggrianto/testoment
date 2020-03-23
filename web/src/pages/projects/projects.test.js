@@ -2,20 +2,20 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import Projects from './projects';
 
-describe('Header', () => {
+describe('Projects Page', () => {
   let wrapper;
 
   beforeEach(() => (wrapper = shallow(<Projects />)));
-
-  it('should render a <div />', () => {
-    expect(wrapper.find('div').length).toEqual(1);
-  });
 
   it('should render title Projects', function() {
     expect(wrapper.find('h1').text()).toEqual('Projects');
   });
 
-  it('should render list of projects', function() {
-    expect(wrapper.find('ListGroup').length).toEqual(1);
+  it('should render Projects component', function() {
+    expect(wrapper.find('projects').length).toEqual(1);
+  });
+
+  it('should render addProject component', function() {
+    expect(wrapper.find('addProject').length).toEqual(1);
   });
 });
